@@ -34,6 +34,19 @@ To download a local model using Ollama run: `ollama pull <model_name>` example: 
 
 To run the local model: `ollama run <model_name>` example: `ollama run gemma3:270m`.
 
+### Troubleshooting local models
+
+If you are under a proxy and `ollama pull <model_name>` times out follow these steps:
+
+1. Download the model `gguf` file. Example: `Qwen3-1.7B-Q8_0.gguf`
+2. Create a `models` folder: `mkdir C:\models`
+3. Place the gguf file inside the models directory: `move C:\Qwen3-1.7B-Q8_0.gguf C:\models\`
+4. Rename the model to something simpler, for example: `qwen3.gguf`
+5. Create a `Modelfile`: `notepad C:\models\Modelfile` and place this exact text inside this file: `FROM ./qwen3.gguf`
+6. Create the model from the Modelfile: `ollama create qwen-local -f Modelfile`
+7. Run the model: `ollama run qwen-local`
+8. Serve the model so you can use it in your application: `ollama serve`
+
 ## Notes
 
 If you encounter SSL errors during the project install `pip-system-certs`: `uv add pip-system-certs`
