@@ -32,7 +32,7 @@ def apply_discount(price: float, discount_tier: str) -> float:
     discount_percentages = {"bronze": 5, "silver": 15, "gold": 23}
     discount = discount_percentages.get(discount_tier, 0)
 
-    return round(price - (1 * discount / 100), 2)
+    return round(price - (1 * discount / 100) * price, 2)
 
 
 # --- Agent Loop ---
@@ -42,7 +42,7 @@ def run_agent(query: str) -> str | None:
     tools = [get_product_price, apply_discount]
     tools_dict = {t.name: t for t in tools}
 
-    llm = init_chat_model(f"ollama:{MODEL_NAME}", temperature=0)
+    llm = init_chat_model(f"openai:gpt-5", temperature=0)
     llm_with_tools = llm.bind_tools(tools)
 
     print(f"Query: {query}")
