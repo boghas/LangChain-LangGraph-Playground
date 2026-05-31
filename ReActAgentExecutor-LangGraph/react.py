@@ -18,5 +18,5 @@ def triple(num: float) -> float:
 
 tools = [TavilySearch(max_results=1), triple]
 
-llm = ChatOpenAI(model="gtp-4o-mini", temperature=0).bind_tools(tools)
+llm = ChatOpenAI(model="gpt-4o-mini", temperature=0).bind_tools(tools)
 

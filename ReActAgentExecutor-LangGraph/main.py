@@ -37,6 +37,8 @@ app.get_graph().draw_mermaid_png(output_file_path="flow.png")
 
 def main():
     print("Hello from reactagentexecutor-langgraph!")
+    res = app.invoke({"messages": [HumanMessage(content="What is the weather in Tokyo? List it and then triple it")]})
+    print(res["messages"][LAST].content)
 
 
 if __name__ == "__main__":
